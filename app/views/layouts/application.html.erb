@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -12,19 +13,72 @@
 
   <body>
     <header>
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to "新規登録", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_user_session_path %>
-        </li>
-      <% end %>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand"  href="/">
+            <span>Bookers</span>
+          </a>
+          <div class="collapse navbar-collapse" id"=navbarNavDropDown">
+            <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+                <!--<li class="nav-item">-->
+                  <a class="nav-link text-light" href="/users/:id">
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a class="nav-link text-light" href="/users">
+                    Users
+                  </a>
+                </li>
+                <li>
+                  <a class="nav-link text-light" href="/books">
+                    Books
+                  </a>
+                </li>
+                <li>
+                  <a class="nav-link text-light" rel="nofollow" data-method="delete" href="/users/sign_out">
+                    Log out
+                  </a>
+                </li>
+              <% else %>
+                <li>
+                  <a class="nav-link text-light" href="/">
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a class="nav-link text-light" href="/homes/about">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a class="nav-link text-light" href="/users/sign_up">
+                    Sign up
+                  </a>
+                </li>
+                <li>
+                  <a class="nav-link text-light" href="/users/sign_in">
+                    Log in
+                  </a>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
-    <%= yield %>
+    <main class="mb-auto">
+      <%= yield %>
+    </main>
+    <footer>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
