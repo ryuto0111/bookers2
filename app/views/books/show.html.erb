@@ -1,11 +1,9 @@
-<%= render 'book', books: @books %>
-
 <div class="col-md-8 offset-md-1">
   <h2>Books detail</h2>
   <table class="table">
     <tbody>
       <tr>
-        <td><%= image_tag book.user.get.profile_image(100,100) %></td>
+        <td><%= image_tag book.user.get_profile_image(100,100) %></td>
         <td><%= @book.user.name %></td>
         <td><%= @book.book_title %></td>
         <td><%= @book.book_body %></td>
