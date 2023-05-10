@@ -1,4 +1,4 @@
-<%= render 'book', books: @books %>
+<%= render 
 
 <div class="col-md-8 offset-md-1">
   <h2>Books</h2>
@@ -12,9 +12,13 @@
       </tr>
     </thead>
     <tbody>
-      <% @book.each do |book| %>
+      <% @books.each do |book| %>
         <tr>
-          <td><%= image_tag book.user.get_profile_image(100,100) %></td>
+          <td><% if book.user.profile_image.attached? %>
+             <%= image_tag book.user.profile_image %>
+                <% else %>
+            <%= image_tag 'default-image.jpg' %>
+                <% end %></td>
           <td><%= book.title %></td>
           <td><%= book.body %></td>
         </tr>

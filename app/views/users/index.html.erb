@@ -1,0 +1,14 @@
+<div class="col-md-8 offset-md-1">
+  <h2>Users</h2>
+  <table class="table">
+    <thead>
+      <% @users.each do |user| %>
+        <tr>
+          <th><%= image_tag user.get.profile_image(80,80) %></th>
+          <th><%= user.name %></th>
+          <th><%= link_to user_path(user.id) %></th>
+        </tr>
+      <% end %>
+    </thead>
+  </table>
+</div>

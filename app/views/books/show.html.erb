@@ -1,12 +1,18 @@
-
+<%= render 'book', books: @books %>
 
 <div class="col-md-8 offset-md-1">
   <h2>Books detail</h2>
   <table class="table">
     <tbody>
       <tr>
-        <td><%= image_tag @book.user.get.profile_image(100,100) %></td>
-        <td></td>
+        <td><%= image_tag book.user.get.profile_image(100,100) %></td>
+        <td><%= @book.user.name %></td>
+        <td><%= @book.book_title %></td>
+        <td><%= @book.book_body %></td>
+        <% if @book.user == current_user %>
+          <%= link_to "Edit", edit_book_path(@book), class:"btn btn-success" %>
+          <%= link_to "Destroy", post_image_path(@book), class:"btn btn-sm btn-danger", method: :delete %>
+        <% end %>
       </tr>
     </tbody>
   </table>
