@@ -1,2 +1,13 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+
+
+<div class="col-md-8 offset-md-1">
+  <h2>Books detail</h2>
+  <table class="table">
+    <tbody>
+      <tr>
+        <td><%= image_tag @book.user.get.profile_image(100,100) %></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
