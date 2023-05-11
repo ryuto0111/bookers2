@@ -26,10 +26,10 @@
   <%= form_with model: Book.new do |f| %>
     <label>Title</label>
     <br>
-    <%= f.text_field :title, class:"form-control book_title" %>
+    <%= f.text_field :title, class:"form-control title" %>
     <label>Opinion</label>
     <br>
-    <%= f.text_area :opinion, class:"form-control book_body" %>
+    <%= f.text_area :opinion, class:"form-control body" %>
     <%= f.submit "Create Book" %>
   <% end %>
 </div>
