@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  
+  before_action :authenticate_user!
 
   def index
     @books = Book.all
@@ -43,6 +45,12 @@ class BooksController < ApplicationController
 
 
   private
+  
+  def authenticate_user!
+    redirect_to user_session_path
+    unless user_signed_in?
+    end
+  end
 
   def book_params
     params.require(:book).permit(:title, :body,)

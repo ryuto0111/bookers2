@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :is_matching_login_user, only: [:edit, :update]
 
   def index
@@ -31,9 +32,12 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    flash[:notice] = "You have updated user successfully."
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+      flash[:notice] = "You have updated user successfully."
+      redirect_to user_path(@user.id)
+    else
+      render :edit
+    end
   end
 
   private
@@ -45,7 +49,7 @@ class UsersController < ApplicationController
   def is_matching_login_user
     user = User.find(params[:id])
     unless user.id == current_user.id
-      redirect_to :update
+      redirect_to user_path
     end
   end
 end
