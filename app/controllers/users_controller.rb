@@ -9,6 +9,10 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
+  
+  def edit
+    @user = User.find(params[:id])
+  end
 
   def create
     @user = User.new(user_params)
@@ -25,18 +29,11 @@ class UsersController < ApplicationController
     @books = @user.books
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
-
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      flash[:notice] = "You have updated user successfully."
-      redirect_to user_path(@user.id)
-    else
-      render :edit
-    end
+    @user.update(user_params)
+    flash[:notice] = "You have updated user successfully."
+    redirect_to user_path(@user.id)
   end
 
   private
@@ -48,7 +45,7 @@ class UsersController < ApplicationController
   def is_matching_login_user
     user = User.find(params[:id])
     unless user.id == current_user.id
-      redirect_to user_path
+      redirect_to :update
     end
   end
 end
